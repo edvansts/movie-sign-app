@@ -4,10 +4,10 @@
     "slug": "movie-sign-app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/logo_android_invert.jpg",
+    "icon": "./assets/images/showturn.jpeg",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/images/logo_android_invert.jpg",
+      "image": "./assets/images/showturn.jpeg",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },

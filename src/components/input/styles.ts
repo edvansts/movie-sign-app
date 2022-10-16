@@ -18,3 +18,5 @@ export const InputContainer = styled.TextInput`
   background-color: white;
   border-color: #e8e8e8;
 `;
+
+export const Icon = styled.View``;
