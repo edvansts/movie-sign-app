@@ -3,9 +3,12 @@ import { FontAwesome } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { Image, ImageBackground, useWindowDimensions } from "react-native";
-import Button from "../../components/button";
+
 import { Input } from "../../components/input";
-import { Background, Form, Logo, SignInContainer } from "./styles";
+import { Background, Form, Logo } from "./styles";
+import { Container } from "../../styles";
+import { Button } from "../../components/button";
+import { useTheme } from "styled-components";
 
 interface ISignInForm {
   username: string;
@@ -14,6 +17,8 @@ interface ISignInForm {
 
 const SignIn = () => {
   const { height } = useWindowDimensions();
+
+  const { colors } = useTheme();
 
   const { control, handleSubmit } = useForm<ISignInForm>({
     defaultValues: {
@@ -27,10 +32,9 @@ const SignIn = () => {
   };
 
   return (
-    <SignInContainer>
-      
+    <Container>
       <LinearGradient
-        colors={["#171616", "#4B444400"]}
+        colors={[colors.BACKGROUND, "#4B444400"]}
         locations={[0.85, 1]}
         style={{
           backgroundColor: "transparent",
@@ -38,7 +42,7 @@ const SignIn = () => {
       >
         <Form>
           <Logo
-            source={require("../../../assets/images/showturn.jpeg")}
+            source={require("../../../assets/images/cineme.png")}
             height={height}
             as={Image}
             resizeMode="contain"
@@ -82,7 +86,7 @@ const SignIn = () => {
         resizeMode="cover"
         as={ImageBackground}
       />
-    </SignInContainer>
+    </Container>
   );
 };
 

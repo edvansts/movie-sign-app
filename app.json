@@ -4,11 +4,11 @@
     "slug": "movie-sign-app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/showturn.jpeg",
+    "icon": "./assets/images/cineme.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/images/showturn.jpeg",
-      "resizeMode": "contain",
+      "image": "./assets/images/splash-screen.png",
+      "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
     "updates": {

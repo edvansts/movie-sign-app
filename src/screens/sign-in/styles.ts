@@ -1,12 +1,8 @@
 import styled from "styled-components/native";
 
 export const Form = styled.View`
-  padding: 20px 20px 80px;
+  padding: 20px 20px 60px;
   align-items: center;
-`;
-
-export const SignInContainer = styled.View`
-  flex: 1;
 `;
 
 export const Logo = styled.Image<{ height: number }>`

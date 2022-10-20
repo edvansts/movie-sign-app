@@ -4,9 +4,10 @@ import { StyledButton, StyledText } from "./styles";
 
 interface IButtonProps extends PressableProps {
   text?: string;
+  
 }
 
-const Default = ({ text, children, ...rest }: IButtonProps) => {
+const Button = ({ text, children, ...rest }: IButtonProps) => {
   return (
     <StyledButton as={Pressable} {...rest}>
       {!!text ? <StyledText>{text}</StyledText> : children}
@@ -14,4 +15,4 @@ const Default = ({ text, children, ...rest }: IButtonProps) => {
   );
 };
 
-export { Default };
+export { Button };
