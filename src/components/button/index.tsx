@@ -1,10 +1,10 @@
 import { View, Pressable, PressableProps } from "react-native";
-import React from "react";
+import React, { ReactNode } from "react";
 import { StyledButton, StyledText } from "./styles";
 
 interface IButtonProps extends PressableProps {
-  text?: string;
-  
+  text?: string | ReactNode;
+  bgColor?: string;
 }
 
 const Button = ({ text, children, ...rest }: IButtonProps) => {
