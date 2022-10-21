@@ -1,57 +1,57 @@
+import React, { useEffect, useState } from "react";
 import {
   Inter_400Regular,
   Inter_500Medium,
   Inter_700Bold,
 } from "@expo-google-fonts/inter";
+
 import {
   Puritan_400Regular,
   Puritan_700Bold,
 } from "@expo-google-fonts/puritan";
-import { useFonts } from "expo-font";
 
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, SafeAreaView } from "react-native";
-import { ThemeProvider } from "styled-components";
+import { loadAsync, useFonts } from "expo-font";
 import { SignIn } from "./src/screens/sign-in";
 import { theme } from "./src/styles";
 import * as SplashScreen from "expo-splash-screen";
-import { useEffect } from "react";
+import { Box, NativeBaseProvider } from "native-base";
 
 SplashScreen.preventAutoHideAsync();
 
-export default function App() {
-  const [loadedFonts] = useFonts({
-    Inter_400Regular,
-    Inter_500Medium,
-    Inter_700Bold,
-    Puritan_400Regular,
-    Puritan_700Bold,
-  });
+const config = {
+  dependencies: {
+    "linear-gradient": require("expo-linear-gradient").LinearGradient,
+  },
+};
 
-  const appIsReady = loadedFonts;
+export default function App() {
+  const [appIsReady, setAppIsReady] = useState(false);
+
+  function hideSplashScreen() {
+    SplashScreen.hideAsync();
+    setAppIsReady(true);
+  }
 
   useEffect(() => {
-    if (appIsReady) {
-      SplashScreen.hideAsync();
-    }
-  }, [appIsReady]);
+    loadAsync({
+      Puritan_400Regular,
+      Puritan_700Bold,
+      Inter_400Regular,
+      Inter_500Medium,
+      Inter_700Bold,
+    }).then(hideSplashScreen);
+  }, []);
 
   if (!appIsReady) {
     return null;
   }
 
   return (
-    <ThemeProvider theme={theme}>
-      <SafeAreaView style={styles.container}>
-        <SignIn />
-      </SafeAreaView>
-    </ThemeProvider>
+    <NativeBaseProvider theme={theme} config={config}>
+      <Box flex={1} backgroundColor="background.100">
+        {appIsReady && <SignIn />}
+      </Box>
+    </NativeBaseProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: theme.colors.BACKGROUND,
-  },
-});

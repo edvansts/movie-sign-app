@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 
 import {
   Pressable as RNPressable,
@@ -29,6 +29,10 @@ const mergePressableStyles: MergePressableStylesFn = (style, pressStyle) => {
   return ({ pressed }) => (pressed ? [style, pressStyle] : style);
 };
 
-export const Pressable = ({ style, pressStyle, ...props }: PressableProps) => (
+export const Pressable: FunctionComponent<PressableProps> = ({
+  style,
+  pressStyle,
+  ...props
+}) => (
   <RNPressable style={mergePressableStyles(style, pressStyle)} {...props} />
 );

@@ -2,13 +2,21 @@ import React from "react";
 import { FontAwesome } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
-import { Image, ImageBackground, useWindowDimensions } from "react-native";
+import { ImageBackground, useWindowDimensions } from "react-native";
 
-import { Input } from "../../components/input";
-import { Background, Form, Logo } from "./styles";
-import { Container } from "../../styles";
-import { Button } from "../../components/button";
-import { useTheme } from "styled-components";
+import {
+  Box,
+  Button,
+  Container,
+  FormControl,
+  Icon,
+  Image,
+  Input,
+  Link,
+  Spacer,
+  Text,
+  useTheme,
+} from "native-base";
 
 interface ISignInForm {
   username: string;
@@ -32,61 +40,144 @@ const SignIn = () => {
   };
 
   return (
-    <Container>
-      <LinearGradient
-        colors={[colors.BACKGROUND, "#4B444400"]}
-        locations={[0.85, 1]}
-        style={{
-          backgroundColor: "transparent",
+    <Box flex={1}>
+      <Box
+        padding={5}
+        paddingBottom={20}
+        bg={{
+          linearGradient: {
+            colors: [colors.background[100], colors.hover[100]],
+            start: [0, 0.9],
+            end: [0, 1],
+          },
         }}
       >
-        <Form>
-          <Logo
-            source={require("../../../assets/images/cineme.png")}
-            height={height}
-            as={Image}
-            resizeMode="contain"
-          />
+        <Image
+          source={require("../../../assets/images/cineme.png")}
+          resizeMode="cover"
+          maxHeight="150px"
+          maxWidth="500px"
+          alt="logo"
+          alignSelf="center"
+          my="4"
+        />
 
-          <Controller
-            control={control}
-            name="username"
-            render={({ field: { onBlur, onChange, value } }) => (
-              <Input
-                onChangeText={onChange}
-                onBlur={onBlur}
-                label="Usuário"
-                value={value}
-                autoCapitalize="none"
-              />
-            )}
-          />
+        <Text fontFamily="heading" fontSize="4xl" fontWeight="bold">
+          Entre agora!
+        </Text>
 
-          <Controller
-            control={control}
-            name="password"
-            render={({ field: { onBlur, onChange, value } }) => (
+        <Controller
+          control={control}
+          name="username"
+          render={({ field: { onBlur, onChange, value } }) => (
+            <Input
+              onChangeText={onChange}
+              onBlur={onBlur}
+              w="100%"
+              placeholder="Usuário"
+              value={value}
+              autoCapitalize="none"
+              InputLeftElement={
+                <Container ml="3">
+                  <FontAwesome
+                    name="user"
+                    color={colors.primary[300]}
+                    size={16}
+                  />
+                </Container>
+              }
+            />
+          )}
+        />
+
+        <Controller
+          control={control}
+          name="password"
+          render={({ field, formState: { errors } }) => (
+            <FormControl w="100%">
               <Input
-                onChangeText={onChange}
-                onBlur={onBlur}
-                label="Senha"
-                value={value}
+                {...field}
+                mt="2"
+                placeholder="Senha"
                 secureTextEntry
-                icon={<FontAwesome name="lock" color="yellow" />}
+                InputLeftElement={
+                  <Container ml="3">
+                    <FontAwesome
+                      name="lock"
+                      color={colors.primary[300]}
+                      size={16}
+                    />
+                  </Container>
+                }
               />
-            )}
-          />
+              {!!errors.password?.message && (
+                <FormControl.ErrorMessage
+                  leftIcon={
+                    <FontAwesome
+                      name="info-circle"
+                      color={colors.danger[100]}
+                    />
+                  }
+                >
+                  {errors.password.message}
+                </FormControl.ErrorMessage>
+              )}
+            </FormControl>
+          )}
+        />
 
-          <Button onPress={handleSubmit(onSubmit)} text="Entrar" />
-        </Form>
-      </LinearGradient>
+        <Link color="text.200" my="4">
+          Esqueceu a senha ?
+        </Link>
 
-      <Background
+        <Button
+          onPress={handleSubmit(onSubmit)}
+          w="100%"
+          bgColor="secondary.200"
+          _text={{
+            fontSize: "md",
+            fontWeight: 700,
+          }}
+        >
+          Entrar
+        </Button>
+
+        <Link color="text.200" mt={4}>
+          Você é novo ? | Crie uma conta
+        </Link>
+
+        <Box mt={6} px={5}>
+          <Button
+            onPress={handleSubmit(onSubmit)}
+            width="100%"
+            bgColor="gray.100"
+            _text={{ fontFamily: "heading", fontWeight: 700, fontSize: "md" }}
+            leftIcon={
+              <Icon
+                as={FontAwesome}
+                name="google"
+                color={colors.white}
+                size={4}
+              />
+            }
+          >
+            Entre com o Google
+          </Button>
+        </Box>
+      </Box>
+
+      <ImageBackground
         source={require("../../../assets/images/stranger-things.png")}
         resizeMode="cover"
-        as={ImageBackground}
+        style={{
+          height: "100%",
+          width: "100%",
+          position: "absolute",
+          bottom: 0,
+          zIndex: -1,
+        }}
       />
-    </Container>
+    </Box>
   );
 };
 

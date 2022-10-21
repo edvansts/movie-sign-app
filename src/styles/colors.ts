@@ -1,17 +1,35 @@
 const colors = {
-  PRIMARY_COLOR: "#5C65C0",
-  PRIMARY_DARK: "#301C41",
-  PRIMARY_LIGHT: "#7166BA",
+  primary: {
+    100: "#413B6B",
+    200: "#26223E",
+    50: "#7166BA",
+    300: "#544E7A",
+  },
 
-  SECONDARY_COLOR: "#6F95FF",
-  SECONDARY_DARK: "#1A45BE",
-  SECONDARY_LIGHT: "#9AB5FF",
+  secondary: {
+    100: "#6F95FF",
+    200: "#1A45BE",
+    50: "#9AB5FF",
+  },
 
-  TITLE_COLOR: "##EFEFEF",
-  TEXT_COLOR: "#EFEFEF",
+  text: {
+    100: "#EFEFEF",
+    200: "#A49DAA",
+  },
 
-  BACKGROUND: "#1C0B2B",
-  BACKGROUND_2: "#301C41",
+  gray: {
+    100: "#71677A",
+  },
+
+  hover: {
+    10: "#FFFFFF10",
+    100: "#4B444400",
+  },
+
+  background: {
+    100: "#1C0B2B",
+    200: "#301C41",
+  },
 };
 
 export { colors };
