@@ -21,7 +21,10 @@ export const theme = extendTheme({
         color: "text.100",
         borderRadius: 6,
         bgColor: "secondary.100",
-        fontFamily: 'heading'
+        fontFamily: "heading",
+        _pressed: {
+          opacity: "0.75",
+        },
       },
     },
     Input: {

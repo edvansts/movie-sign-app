@@ -1,9 +1,9 @@
 import React from "react";
 import { FontAwesome } from "@expo/vector-icons";
-import { LinearGradient } from "expo-linear-gradient";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
-import { ImageBackground, useWindowDimensions } from "react-native";
-
+import { ImageBackground } from "react-native";
+import { z, TypeOf } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Box,
   Button,
@@ -13,27 +13,30 @@ import {
   Image,
   Input,
   Link,
-  Spacer,
   Text,
   useTheme,
 } from "native-base";
+import { requiredError } from "../../constants";
 
-interface ISignInForm {
-  username: string;
-  password: string;
-}
+const SIGN_IN_SCHEMA = z.object({
+  username: z.string().min(1, requiredError),
+  password: z.string().min(1, requiredError),
+});
+
+type ISignInForm = TypeOf<typeof SIGN_IN_SCHEMA>;
 
 const SignIn = () => {
-  const { height } = useWindowDimensions();
-
   const { colors } = useTheme();
 
-  const { control, handleSubmit } = useForm<ISignInForm>({
+  const { control, handleSubmit, formState } = useForm<ISignInForm>({
     defaultValues: {
-      password: "",
       username: "",
+      password: "",
     },
+    resolver: zodResolver(SIGN_IN_SCHEMA),
   });
+
+  // console.log(formState.errors);
 
   const onSubmit: SubmitHandler<ISignInForm> = (data) => {
     console.log(data);
@@ -69,24 +72,32 @@ const SignIn = () => {
         <Controller
           control={control}
           name="username"
-          render={({ field: { onBlur, onChange, value } }) => (
-            <Input
-              onChangeText={onChange}
-              onBlur={onBlur}
-              w="100%"
-              placeholder="Usuário"
-              value={value}
-              autoCapitalize="none"
-              InputLeftElement={
-                <Container ml="3">
-                  <FontAwesome
-                    name="user"
-                    color={colors.primary[300]}
-                    size={16}
-                  />
-                </Container>
-              }
-            />
+          render={({ field, formState: { errors } }) => (
+            <FormControl isRequired isInvalid={!!errors.username?.message}>
+              <Input
+                {...field}
+                isFullWidth
+                placeholder="Usuário"
+                autoCapitalize="none"
+                InputLeftElement={
+                  <Container ml="3">
+                    <FontAwesome
+                      name="user"
+                      color={colors.primary[300]}
+                      size={16}
+                    />
+                  </Container>
+                }
+              />
+
+              <FormControl.ErrorMessage
+                leftIcon={
+                  <FontAwesome name="info-circle" color={colors.danger[500]} />
+                }
+              >
+                {errors.username?.message}
+              </FormControl.ErrorMessage>
+            </FormControl>
           )}
         />
 
@@ -94,12 +105,13 @@ const SignIn = () => {
           control={control}
           name="password"
           render={({ field, formState: { errors } }) => (
-            <FormControl w="100%">
+            <FormControl isInvalid={!!errors.password?.message} isRequired>
               <Input
                 {...field}
                 mt="2"
                 placeholder="Senha"
-                secureTextEntry
+                isFullWidth
+                type="password"
                 InputLeftElement={
                   <Container ml="3">
                     <FontAwesome
@@ -110,18 +122,14 @@ const SignIn = () => {
                   </Container>
                 }
               />
-              {!!errors.password?.message && (
-                <FormControl.ErrorMessage
-                  leftIcon={
-                    <FontAwesome
-                      name="info-circle"
-                      color={colors.danger[100]}
-                    />
-                  }
-                >
-                  {errors.password.message}
-                </FormControl.ErrorMessage>
-              )}
+
+              <FormControl.ErrorMessage
+                leftIcon={
+                  <FontAwesome name="info-circle" color={colors.danger[500]} />
+                }
+              >
+                {errors.password?.message}
+              </FormControl.ErrorMessage>
             </FormControl>
           )}
         />
@@ -148,10 +156,12 @@ const SignIn = () => {
 
         <Box mt={6} px={5}>
           <Button
-            onPress={handleSubmit(onSubmit)}
             width="100%"
             bgColor="gray.100"
             _text={{ fontFamily: "heading", fontWeight: 700, fontSize: "md" }}
+            _pressed={{
+              opacity: 0.75,
+            }}
             leftIcon={
               <Icon
                 as={FontAwesome}

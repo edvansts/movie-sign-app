@@ -23,6 +23,7 @@ const colors = {
 
   hover: {
     10: "#FFFFFF10",
+    50: "#FFFFFF50",
     100: "#4B444400",
   },
 
