@@ -15,7 +15,9 @@ import { loadAsync, useFonts } from "expo-font";
 import { SignIn } from "./src/screens/sign-in";
 import { theme } from "./src/styles";
 import * as SplashScreen from "expo-splash-screen";
-import { Box, NativeBaseProvider } from "native-base";
+import { Box, NativeBaseProvider, Text } from "native-base";
+import { Home } from "./src/screens/home";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -50,7 +52,9 @@ export default function App() {
   return (
     <NativeBaseProvider theme={theme} config={config}>
       <Box flex={1} backgroundColor="background.100">
-        {appIsReady && <SignIn />}
+        <SafeAreaView style={{ flex: 1 }}>
+          {appIsReady && <Home />}
+        </SafeAreaView>
       </Box>
     </NativeBaseProvider>
   );
