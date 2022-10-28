@@ -72,10 +72,14 @@ const SignIn = () => {
         <Controller
           control={control}
           name="username"
-          render={({ field, formState: { errors } }) => (
+          render={({
+            field: { onChange, ...field },
+            formState: { errors },
+          }) => (
             <FormControl isRequired isInvalid={!!errors.username?.message}>
               <Input
                 {...field}
+                onChangeText={onChange}
                 isFullWidth
                 placeholder="Usuário"
                 autoCapitalize="none"
@@ -104,10 +108,14 @@ const SignIn = () => {
         <Controller
           control={control}
           name="password"
-          render={({ field, formState: { errors } }) => (
+          render={({
+            field: { onChange, ...field },
+            formState: { errors },
+          }) => (
             <FormControl isInvalid={!!errors.password?.message} isRequired>
               <Input
                 {...field}
+                onChangeText={onChange}
                 mt="2"
                 placeholder="Senha"
                 isFullWidth

@@ -53,7 +53,7 @@ export default function App() {
     <NativeBaseProvider theme={theme} config={config}>
       <Box flex={1} backgroundColor="background.100">
         <SafeAreaView style={{ flex: 1 }}>
-          {appIsReady && <Home />}
+          {appIsReady && <SignIn />}
         </SafeAreaView>
       </Box>
     </NativeBaseProvider>
