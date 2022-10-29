@@ -18,6 +18,7 @@ import * as SplashScreen from "expo-splash-screen";
 import { Box, NativeBaseProvider, Text } from "native-base";
 import { Home } from "./src/screens/home";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { Navigator } from "./src/config/navigator";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -53,7 +54,7 @@ export default function App() {
     <NativeBaseProvider theme={theme} config={config}>
       <Box flex={1} backgroundColor="background.100">
         <SafeAreaView style={{ flex: 1 }}>
-          {appIsReady && <SignIn />}
+          <Navigator />
         </SafeAreaView>
       </Box>
     </NativeBaseProvider>
