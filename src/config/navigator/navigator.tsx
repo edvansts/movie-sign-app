@@ -1,21 +1,21 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
-import { SCREENS } from "./constants";
 import { Home } from "../../screens/home";
 import { SignIn } from "../../screens/sign-in";
+import { RootStackParamList } from "./types";
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const Navigator = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName={SCREENS.signIn}
+        initialRouteName='signIn'
         screenOptions={{ headerShown: false }}
       >
-        <Stack.Screen name={SCREENS.signIn} component={SignIn} />
-        <Stack.Screen name={SCREENS.home} component={Home} />
+        <Stack.Screen name='signIn' component={SignIn} />
+        <Stack.Screen name='home' component={Home} />
       </Stack.Navigator>
     </NavigationContainer>
   );

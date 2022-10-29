@@ -21,6 +21,8 @@ import {
   useTheme,
 } from "native-base";
 import { requiredError } from "../../constants";
+import { useLogin } from "../../api/useLogin";
+import { useRootNavigator } from "../../hooks/useRootNavigator";
 
 const SIGN_IN_SCHEMA = z.object({
   username: z.string().min(1, requiredError),
@@ -32,7 +34,9 @@ type ISignInForm = TypeOf<typeof SIGN_IN_SCHEMA>;
 const SignIn = () => {
   const { colors } = useTheme();
 
-  const { control, handleSubmit, formState } = useForm<ISignInForm>({
+  const navigate = useRootNavigator();
+
+  const { control, handleSubmit } = useForm<ISignInForm>({
     defaultValues: {
       username: "",
       password: "",
@@ -40,10 +44,18 @@ const SignIn = () => {
     resolver: zodResolver(SIGN_IN_SCHEMA),
   });
 
-  // console.log(formState.errors);
+  const navigateToHome = () => {
+    navigate.navigate("home");
+  };
 
-  const onSubmit: SubmitHandler<ISignInForm> = (data) => {
-    console.log(data);
+  const { error, isLoading, login } = useLogin({ onSuccess: navigateToHome });
+
+  const onSubmit: SubmitHandler<ISignInForm> = async (data) => {
+    const { password, username } = data;
+
+    try {
+      login({ password, user: username });
+    } catch (err) {}
   };
 
   return (
@@ -73,6 +85,8 @@ const SignIn = () => {
           <Text fontFamily="heading" fontSize="4xl" fontWeight="bold">
             Entre agora!
           </Text>
+
+          {!!error && <Text color="danger.500" my='2'> - {error.message}</Text>}
 
           <Controller
             control={control}
@@ -165,6 +179,7 @@ const SignIn = () => {
               fontSize: "md",
               fontWeight: 700,
             }}
+            isLoading={isLoading}
           >
             Entrar
           </Button>

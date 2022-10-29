@@ -10,15 +10,15 @@ import {
   Puritan_700Bold,
 } from "@expo-google-fonts/puritan";
 
-import { StatusBar } from "expo-status-bar";
 import { loadAsync, useFonts } from "expo-font";
-import { SignIn } from "./src/screens/sign-in";
 import { theme } from "./src/styles";
 import * as SplashScreen from "expo-splash-screen";
 import { Box, NativeBaseProvider, Text } from "native-base";
-import { Home } from "./src/screens/home";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Navigator } from "./src/config/navigator";
+import { SwrProvider } from "./src/config/swr";
+
+// API DOCS: https://movie-sign.onrender.com/docs
 
 SplashScreen.preventAutoHideAsync();
 
@@ -54,7 +54,9 @@ export default function App() {
     <NativeBaseProvider theme={theme} config={config}>
       <Box flex={1} backgroundColor="background.100">
         <SafeAreaView style={{ flex: 1 }}>
-          <Navigator />
+          <SwrProvider>
+            <Navigator />
+          </SwrProvider>
         </SafeAreaView>
       </Box>
     </NativeBaseProvider>
