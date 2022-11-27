@@ -1,4 +1,5 @@
 import React from "react";
+import * as AuthSession from 'expo-auth-session';
 import { FontAwesome } from "@expo/vector-icons";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import {
@@ -23,12 +24,20 @@ import {
 import { requiredError } from "../../constants";
 import { useLogin } from "../../api/useLogin";
 import { useRootNavigator } from "../../hooks/useRootNavigator";
+import { useSignInGoogle } from "../../hooks/useSignInGoogle";
 
 const SIGN_IN_SCHEMA = z.object({
   username: z.string().min(1, requiredError),
   password: z.string().min(1, requiredError),
 });
 
+
+type AuthResponse = {
+  params: {
+    access_token: string;
+  },
+  type: string;
+}
 type ISignInForm = TypeOf<typeof SIGN_IN_SCHEMA>;
 
 const SignIn = () => {
@@ -49,6 +58,16 @@ const SignIn = () => {
   };
 
   const { error, isLoading, login } = useLogin({ onSuccess: navigateToHome });
+
+  async function handleGoogleSignIn(){
+    try {
+      const { user } = await useSignInGoogle()
+  
+      console.log(user)
+    } catch(error) {
+      console.log(error)
+    }
+  }
 
   const onSubmit: SubmitHandler<ISignInForm> = async (data) => {
     const { password, username } = data;
@@ -196,6 +215,7 @@ const SignIn = () => {
               _pressed={{
                 opacity: 0.75,
               }}
+              onPress={handleGoogleSignIn}
               leftIcon={
                 <Icon
                   as={FontAwesome}

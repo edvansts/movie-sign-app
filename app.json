@@ -1,7 +1,9 @@
 {
   "expo": {
-    "name": "movie-sign-app",
-    "slug": "movie-sign-app",
+    "name": "cineme",
+    "slug": "cineme",
+    "owner": "matos-ed",
+    "scheme": "cineme",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/cineme.png",
