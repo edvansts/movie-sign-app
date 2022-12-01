@@ -8,22 +8,15 @@ import { useUserStore } from "../../store/user";
 const Home = () => {
   const { user } = useUserStore()
 
+  if(!user) return <SignIn />
+
   return (
     <Box flex={1} safeAreaTop backgroundColor="background.100">
       <ScrollView>
-        {user? 
-        (
           <VStack space={3.5}  w="100%" px="3">
             <TrendingMovies />
             <TrendingTvShows />
           </VStack>
-         )
-        :
-        (
-        <SignIn />
-        )
-        }
-        
       </ScrollView>
     </Box>
   );
