@@ -1,5 +1,5 @@
 import React from "react";
-import * as AuthSession from 'expo-auth-session';
+import * as AuthSession from "expo-auth-session";
 import { FontAwesome } from "@expo/vector-icons";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import {
@@ -22,7 +22,7 @@ import {
   useTheme,
 } from "native-base";
 import { requiredError } from "../../constants";
-import { useLogin } from "../../api/useLogin";
+import { usePostLogin } from "../../api/post-login";
 import { useRootNavigator } from "../../hooks/useRootNavigator";
 import { useSignInGoogle } from "../../hooks/useSignInGoogle";
 
@@ -31,13 +31,6 @@ const SIGN_IN_SCHEMA = z.object({
   password: z.string().min(1, requiredError),
 });
 
-
-type AuthResponse = {
-  params: {
-    access_token: string;
-  },
-  type: string;
-}
 type ISignInForm = TypeOf<typeof SIGN_IN_SCHEMA>;
 
 const SignIn = () => {
@@ -57,15 +50,19 @@ const SignIn = () => {
     navigate.navigate("home");
   };
 
-  const { error, isLoading, login } = useLogin({ onSuccess: navigateToHome });
+  const { error, isLoading, login } = usePostLogin({
+    onSuccess: navigateToHome,
+  });
 
-  async function handleGoogleSignIn(){
+  const { signWithGoogle, isLoading: isSigningWithGoogle } = useSignInGoogle({
+    onSuccess: navigateToHome,
+  });
+
+  async function handleGoogleSignIn() {
     try {
-      const { user } = await useSignInGoogle()
-  
-      console.log(user)
-    } catch(error) {
-      console.log(error)
+      await signWithGoogle();
+    } catch (error) {
+      console.log(error);
     }
   }
 
@@ -105,7 +102,12 @@ const SignIn = () => {
             Entre agora!
           </Text>
 
-          {!!error && <Text color="danger.500" my='2'> - {error.message}</Text>}
+          {!!error && (
+            <Text color="danger.500" my="2">
+              {" "}
+              - {error.message}
+            </Text>
+          )}
 
           <Controller
             control={control}
@@ -224,6 +226,8 @@ const SignIn = () => {
                   size={4}
                 />
               }
+              isLoading={isSigningWithGoogle}
+              disabled={isSigningWithGoogle}
             >
               Entre com o Google
             </Button>

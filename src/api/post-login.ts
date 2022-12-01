@@ -1,6 +1,8 @@
 import { AxiosError } from "axios";
 import useSwrMutation from "swr/mutation";
 import { CLIENT_API } from "../config/axios/api-client";
+import { useTokenStore } from "../store/token";
+import { useUserStore } from "../store/user";
 import { User } from "../types";
 import { DefaultData } from "./types";
 
@@ -9,19 +11,34 @@ interface PostLogin {
   password: string;
 }
 
+interface PostLoginResponse {
+  user: User;
+  token: string;
+}
+
 const url = "/auth/login";
 
 const postLogin = (url: string, { arg }: DefaultData<PostLogin>) => {
   const data = arg;
 
-  return CLIENT_API.post<User>(url, data);
+  return CLIENT_API.post<PostLoginResponse>(url, data);
 };
 
-const useLogin = ({ onSuccess }: { onSuccess?(): void } = {}) => {
+const usePostLogin = ({ onSuccess }: { onSuccess?(): void } = {}) => {
+  const { setUser } = useUserStore();
+  const { setToken } = useTokenStore();
+
   const { trigger, isMutating, data, error, reset } = useSwrMutation(
     url,
     postLogin,
-    { onSuccess }
+    {
+      onSuccess: ({ data: { token, user } }) => {
+        onSuccess?.();
+
+        setToken(token);
+        setUser(user);
+      },
+    }
   );
 
   const user = data?.data;
@@ -35,4 +52,4 @@ const useLogin = ({ onSuccess }: { onSuccess?(): void } = {}) => {
   };
 };
 
-export { useLogin };
+export { usePostLogin };

@@ -1,5 +1,5 @@
 import useSWR from "swr";
-import { CLIENT_API } from "../../../config/axios/api-client";
+import { CLIENT_API } from "../../../../config/axios/api-client";
 import { GetTrendingMovies } from "./types";
 
 const url = "/movies/trending";
