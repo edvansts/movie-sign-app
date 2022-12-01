@@ -1,5 +1,4 @@
 import React from "react";
-import * as AuthSession from "expo-auth-session";
 import { FontAwesome } from "@expo/vector-icons";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import {
