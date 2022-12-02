@@ -4,3 +4,4 @@
 - [] Create Tab Navigator to Home Screen;
 - [] Home Screen;
 - [] Movie Details Screen
+- [] get user data

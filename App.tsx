@@ -15,7 +15,7 @@ import { theme } from "./src/styles";
 import * as SplashScreen from "expo-splash-screen";
 import { Box, NativeBaseProvider, Text } from "native-base";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Navigator } from "./src/config/navigator";
+import { RootStackNavigator } from "./src/config/navigator";
 import { SwrProvider } from "./src/config/swr";
 
 // API DOCS: https://movie-sign.onrender.com/docs
@@ -55,7 +55,7 @@ export default function App() {
       <Box flex={1} backgroundColor="background.100">
         <SafeAreaView style={{ flex: 1 }}>
           <SwrProvider>
-            <Navigator />
+            <RootStackNavigator />
           </SwrProvider>
         </SafeAreaView>
       </Box>

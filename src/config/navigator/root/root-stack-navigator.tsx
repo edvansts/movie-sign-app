@@ -1,27 +1,32 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
-import { Home } from "../../screens/home";
-import { SignIn } from "../../screens/sign-in";
+import { SignIn } from "../../../screens/sign-in";
+import { useTokenStore } from "../../../store/token";
+import { HomeTabsNavigator } from "../home/home-tabs-navigator";
+import { useUserStore } from "../../../store/user";
 import type { RootStackParamList } from "./types";
-import { useTokenStore } from "../../store/token";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
-const Navigator = () => {
+const RootStackNavigator = () => {
   const token = useTokenStore();
+  const user = useUserStore();
+
+  if (token && user) {
+    return <HomeTabsNavigator />;
+  }
 
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName={token ? "home" : "signIn"}
+        initialRouteName="signIn"
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="signIn" component={SignIn} />
-        <Stack.Screen name="home" component={Home} />
       </Stack.Navigator>
     </NavigationContainer>
   );
 };
 
-export { Navigator };
+export { RootStackNavigator };

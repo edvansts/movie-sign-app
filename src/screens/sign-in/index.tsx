@@ -23,7 +23,6 @@ import {
 } from "native-base";
 import { requiredError } from "../../constants";
 import { usePostLogin } from "../../api/post-login";
-import { useRootNavigator } from "../../hooks/useRootNavigator";
 import { useSignInGoogle } from "../../hooks/useSignInGoogle";
 
 const SIGN_IN_SCHEMA = z.object({
@@ -36,8 +35,6 @@ type ISignInForm = TypeOf<typeof SIGN_IN_SCHEMA>;
 const SignIn = () => {
   const { colors } = useTheme();
 
-  const navigate = useRootNavigator();
-
   const { control, handleSubmit } = useForm<ISignInForm>({
     defaultValues: {
       username: "",
@@ -46,17 +43,9 @@ const SignIn = () => {
     resolver: zodResolver(SIGN_IN_SCHEMA),
   });
 
-  const navigateToHome = () => {
-    navigate.navigate("home");
-  };
+  const { error, isLoading, login } = usePostLogin();
 
-  const { error, isLoading, login } = usePostLogin({
-    onSuccess: navigateToHome,
-  });
-
-  const { signWithGoogle, isLoading: isSigningWithGoogle } = useSignInGoogle({
-    onSuccess: navigateToHome,
-  });
+  const { signWithGoogle, isLoading: isSigningWithGoogle } = useSignInGoogle();
 
   async function handleGoogleSignIn() {
     try {
