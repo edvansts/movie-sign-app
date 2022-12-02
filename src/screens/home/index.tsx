@@ -10,10 +10,10 @@ const Home = () => {
   return (
     <Box flex={1} safeAreaTop backgroundColor="background.100">
       <ScrollView>
-        <VStack space={3.5}  w="100%" px="3">
-          <TrendingMovies />
-          <TrendingTvShows />
-        </VStack>
+          <VStack space={3.5}  w="100%" px="3">
+            <TrendingMovies />
+            <TrendingTvShows />
+          </VStack>
       </ScrollView>
     </Box>
   );
