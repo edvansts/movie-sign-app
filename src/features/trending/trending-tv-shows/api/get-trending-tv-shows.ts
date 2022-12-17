@@ -30,7 +30,7 @@ const url = "/tv-shows/trending";
 
 const useTrendingTvShows = () => {
   const { mutate, isValidating, data, error } = useSWR(url, (url) =>
-    CLIENT_API.get<GetTrendingTvShowsData>(url)
+    CLIENT_API.get<GetTrendingTvShowsData>(url),
   );
 
   const trendingTvShows = data?.data;

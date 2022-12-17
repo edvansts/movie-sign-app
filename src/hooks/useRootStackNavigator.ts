@@ -1,11 +1,8 @@
-
-import { useNavigation } from '@react-navigation/native'
-import { RootStackNavigationProps } from '../config/navigator'
+import { useNavigation } from "@react-navigation/native";
+import { RootStackNavigationProps } from "../config/navigator";
 
 const useRootStackNavigator = () => {
-  return (
-   useNavigation<RootStackNavigationProps>()
-  )
-}
+  return useNavigation<RootStackNavigationProps>();
+};
 
-export { useRootStackNavigator}
+export { useRootStackNavigator };

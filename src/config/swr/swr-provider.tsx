@@ -16,6 +16,7 @@ const SwrProvider = ({ children }: PropsWithChildren<{}>) => {
   return (
     <SWRConfig
       value={{
+        provider: () => new Map(),
         onError: normalizeError,
       }}
     >

@@ -1,4 +1,6 @@
-export type GetTrendingMovies = {
+export type GetTrendingMovies = TrendingMovieData[];
+
+export type TrendingMovieData = {
   _id: string;
   title: string;
   originalTitle: string;
@@ -9,4 +11,4 @@ export type GetTrendingMovies = {
   posterImage: string;
   tmdbId: string;
   imdbId: string;
-}[];
+};

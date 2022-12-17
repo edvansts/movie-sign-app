@@ -23,7 +23,7 @@ export const useTokenStore = create<TokenState>()(
           getItem: readItem,
           removeItem: deleteItem,
         }),
-        onRehydrateStorage: (state) =>  {console.log(state)}
+        // onRehydrateStorage: (state) =>  {console.log(state)}
       }
     )
   )

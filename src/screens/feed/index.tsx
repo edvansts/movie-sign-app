@@ -2,21 +2,21 @@ import React from "react";
 import { Box, ScrollView, Text, VStack } from "native-base";
 import { TrendingMovies } from "../../features/trending/trending-movies";
 import { TrendingTvShows } from "../../features/trending/trending-tv-shows";
-import { useHomeTabsNavigator } from "../../hooks/useHomeTabsNavigator";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-const Home = () => {
-  const navigate = useHomeTabsNavigator();
-
+const Feed = () => {
   return (
-    <Box flex={1} safeAreaTop backgroundColor="background.100">
-      <ScrollView>
-          <VStack space={3.5}  w="100%" px="3">
+    <SafeAreaView style={{ flex: 1 }}>
+      <Box flex={1} safeAreaTop backgroundColor="background.100">
+        <ScrollView>
+          <VStack space={3.5} w="100%" px="3">
             <TrendingMovies />
             <TrendingTvShows />
           </VStack>
-      </ScrollView>
-    </Box>
+        </ScrollView>
+      </Box>
+    </SafeAreaView>
   );
 };
 
-export { Home };
+export { Feed };

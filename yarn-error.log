@@ -4067,14 +4067,6 @@ Lockfile:
       path-browserify "^1.0.0"
       url-parse "^1.5.9"
   
-  expo-constants@~13.2.2, expo-constants@~13.2.4:
-    version "13.2.4"
-    resolved "https://registry.yarnpkg.com/expo-constants/-/expo-constants-13.2.4.tgz#eab4a553f074b2c60ad7a158d3b82e3484a94606"
-    integrity sha512-Zobau8EuTk2GgafwkfGnWM6CmSLB7X8qnQXVuXe0nd3v92hfQUmRWGhJwH88uxXj3LrfqctM6PaJ8taG1vxfBw==
-    dependencies:
-      "@expo/config" "~7.0.0"
-      uuid "^3.3.2"
-  
   expo-error-recovery@~3.2.0:
     version "3.2.0"
     resolved "https://registry.yarnpkg.com/expo-error-recovery/-/expo-error-recovery-3.2.0.tgz#3a4543382904a5e70829cb41d7fc0f022c2bef6e"

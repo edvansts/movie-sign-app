@@ -6,11 +6,11 @@ import {
   Flex,
   Heading,
   HStack,
-  Image,
   Skeleton,
 } from "native-base";
 import { getImageUrl } from "../../../utils/image";
 import { useTrendingTvShows } from "./api/get-trending-tv-shows";
+import { CachedImage } from "../../../components/cached-image";
 
 const TrendingTvShows = () => {
   const { isLoading, trendingTvShows } = useTrendingTvShows();
@@ -60,9 +60,10 @@ const TrendingTvShows = () => {
               backgroundColor="white"
               mr="6"
             >
-              <Image
+              <CachedImage
                 src={getImageUrl(tvShow.posterImage)}
                 alt={tvShow.name}
+                cacheKey={tvShow._id}
                 w="100%"
                 height="100%"
               />

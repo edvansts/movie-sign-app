@@ -6,10 +6,10 @@ const url = "/movies/trending";
 
 const useTrendingMovies = () => {
   const { mutate, isValidating, data, error } = useSWR(url, (url) =>
-    CLIENT_API.get<GetTrendingMovies>(url)
+    CLIENT_API.get<GetTrendingMovies>(url), 
   );
 
-  const trendingMovies = data?.data;
+  const trendingMovies = data?.data || [];
 
   return {
     getTrendingMovies: mutate,
