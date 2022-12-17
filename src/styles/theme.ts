@@ -10,6 +10,9 @@ export const theme = extendTheme({
     body: "Inter",
     mono: "Inter",
   },
+  fontSizes: {
+    'h2': '24px'
+  },
   components: {
     Text: {
       baseStyle: {
@@ -34,6 +37,11 @@ export const theme = extendTheme({
         bgColor: "primary.100",
         height: 10,
         borderRadius: 6,
+      },
+    },
+    Heading: {
+      baseStyle: {
+        color: "text.100",
       },
     },
   },

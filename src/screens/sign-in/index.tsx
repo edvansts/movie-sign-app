@@ -23,7 +23,7 @@ import {
 import { requiredError } from "../../constants";
 import { usePostLogin } from "../../api/post-login";
 import { useSignInGoogle } from "../../hooks/useSignInGoogle";
-import { useRootStackNavigator } from "../../hooks/useRootStackNavigator";
+import { useRegisterStackNavigator } from "../../hooks/use-register-stack-navigator";
 
 const SIGN_IN_SCHEMA = z.object({
   username: z.string().min(1, requiredError),
@@ -43,7 +43,7 @@ const SignIn = () => {
     resolver: zodResolver(SIGN_IN_SCHEMA),
   });
 
-  const { navigate } = useRootStackNavigator()
+  const { navigate } = useRegisterStackNavigator()
 
   const { error, isLoading, login } = usePostLogin();
 

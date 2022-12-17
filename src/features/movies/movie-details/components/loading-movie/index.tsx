@@ -1,7 +1,8 @@
+import { Box } from "native-base";
 import React from "react";
 
 function LoadingMovie() {
-  return <div>LoadingMovie</div>;
+  return <Box></Box>
 }
 
 export { LoadingMovie };

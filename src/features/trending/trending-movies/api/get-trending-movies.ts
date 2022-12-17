@@ -9,7 +9,7 @@ const useTrendingMovies = () => {
     CLIENT_API.get<GetTrendingMovies>(url), 
   );
 
-  const trendingMovies = data?.data || [];
+  const trendingMovies = data?.data;
 
   return {
     getTrendingMovies: mutate,

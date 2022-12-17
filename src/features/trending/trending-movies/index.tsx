@@ -2,15 +2,15 @@ import React from "react";
 import { useTrendingMovies } from "./api/get-trending-movies";
 import { Box, FlatList, Flex, Heading, Pressable } from "native-base";
 import { getImageUrl } from "../../../utils/image";
-import useFeedStackNavigator from "../../../hooks/use-feed-stack-navigator";
 import { LoadingMovies } from "./components/loading-movies";
-import { TrendingMovieData } from "./api/types";
 import { CachedImage } from "../../../components/cached-image";
+import type { TrendingMovieData } from "./api/types";
+import { useHomeStackNavigator } from "../../../hooks/use-home-stack-navigator";
 
 const TrendingMovies = () => {
   const { isLoading, trendingMovies } = useTrendingMovies();
 
-  const { navigate } = useFeedStackNavigator();
+  const { navigate } = useHomeStackNavigator();
 
   const navigateToMovie = (movie: TrendingMovieData) => {
     navigate('movie-details', { movieId: movie._id })

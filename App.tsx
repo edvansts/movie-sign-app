@@ -13,8 +13,8 @@ import {
 import { loadAsync } from "expo-font";
 import { theme } from "./src/styles";
 import * as SplashScreen from "expo-splash-screen";
-import { Box, NativeBaseProvider, Text } from "native-base";
-import { RootStackNavigator } from "./src/config/navigator";
+import { Box, NativeBaseProvider } from "native-base";
+import { RootNavigator } from "./src/config/navigator";
 import { SwrProvider } from "./src/config/swr";
 import { initImageCacheDirectory } from "./src/utils/image";
 
@@ -56,7 +56,7 @@ export default function App() {
     <NativeBaseProvider theme={theme} config={config}>
       <Box flex={1} backgroundColor="background.100">
         <SwrProvider>
-          <RootStackNavigator />
+          <RootNavigator />
         </SwrProvider>
       </Box>
     </NativeBaseProvider>

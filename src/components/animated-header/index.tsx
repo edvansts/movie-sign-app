@@ -1,6 +1,7 @@
 import React from "react";
 import { Animated } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { CachedImage } from "../cached-image";
 import { CacheImageBackground } from "../cached-image-background";
 
 const HEADER_HEIGHT = 200;
@@ -31,11 +32,10 @@ const AnimatedHeader = ({
         right: 0,
         zIndex: 10,
         height: headerHeight,
-        backgroundColor: "lightblue",
       }}
     >
       {backgroundImage && (
-        <CacheImageBackground
+        <CachedImage
           cacheKey={backgroundImage}
           source={{ uri: backgroundImage }}
           resizeMode="cover"

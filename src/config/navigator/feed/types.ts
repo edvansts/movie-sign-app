@@ -1,9 +1,10 @@
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
 
-export type FeedStackParamList = {
-  feed: undefined;
-  "movie-details": { movieId: string };
+export type FeedTabsParamList = {
+  home: undefined;
+  profile: undefined;
+  myList: undefined;
 };
 
-export type FeedStackNavigationProps =
-  NativeStackNavigationProp<FeedStackParamList>;
+export type FeedTabsNavigationProps =
+  BottomTabNavigationProp<FeedTabsParamList>;

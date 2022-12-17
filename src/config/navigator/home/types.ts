@@ -1,12 +1,16 @@
-import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
-import { NavigatorScreenParams } from "@react-navigation/native";
-import { FeedStackParamList } from "../feed/types";
+import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import type { NavigatorScreenParams, RouteProp } from "@react-navigation/native";
+import type { FeedTabsParamList } from "../feed/types";
 
-export type HomeTabsParamList = {
-  home: NavigatorScreenParams<FeedStackParamList>;
-  user: undefined;
-  myList: undefined;
+export type HomeStackParamList = {
+  feed: NavigatorScreenParams<FeedTabsParamList>;
+  "movie-details": { movieId: string };
 };
 
-export type HomeTabsNavigationProps =
-  BottomTabNavigationProp<HomeTabsParamList>;
+export type HomeStackNavigationProps =
+  NativeStackNavigationProp<HomeStackParamList>;
+
+ export type HomeRouteProps<RouteName extends keyof HomeStackParamList> = RouteProp<
+  HomeStackParamList,
+  RouteName
+>;
