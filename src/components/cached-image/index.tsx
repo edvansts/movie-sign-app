@@ -5,16 +5,21 @@ import { ImageURISource } from "react-native";
 
 interface CachedImageProps extends IImageProps {
   cacheKey?: string;
+  placeholder?: {
+    width: number;
+    height: number;
+    text?: string;
+  }
 }
 
-const CachedImage = ({ cacheKey, source, src, ...props }: CachedImageProps) => {
+const CachedImage = ({ cacheKey, source, src, placeholder, ...props }: CachedImageProps) => {
   const uri = src
     ? src
     : typeof source === "string"
     ? (source as string)
     : (source as ImageURISource).uri;
 
-  const { imageUri } = useImageCache({ cacheKey, uri });
+  const { imageUri } = useImageCache({ cacheKey, uri, placeholder });
 
   return <Image {...props} source={{ uri: imageUri }} />;
 };

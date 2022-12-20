@@ -15,9 +15,20 @@ import { IMAGE_CACHE_DIRECTORY } from "../constants/file-system";
 interface useCacheProps {
   uri: string;
   cacheKey?: string;
+  placeholder?: {
+    width: number;
+    height: number;
+    text?: string;
+  };
 }
 
-const useImageCache = ({ uri, cacheKey: cacheKeyProps }: useCacheProps) => {
+const PLACEHOLDER_IMAGE = "https://via.placeholder.com";
+
+const useImageCache = ({
+  uri,
+  cacheKey: cacheKeyProps,
+  placeholder,
+}: useCacheProps) => {
   const isMounted = useIsMounted();
   const [imageUri, setImageUri] = useState(null);
 
@@ -33,6 +44,20 @@ const useImageCache = ({ uri, cacheKey: cacheKeyProps }: useCacheProps) => {
 
   const loadImage = async ({ fileURI }) => {
     try {
+      const imageContainsNull = uri.includes("null");
+
+      if (imageContainsNull && isMounted()) {
+        if (!placeholder) {
+          return setImageUri(null);
+        }
+
+        return setImageUri(
+          `${PLACEHOLDER_IMAGE}/${placeholder.width}x${placeholder.height}${
+            placeholder.text ? `?text=${placeholder.text}` : ""
+          }`
+        );
+      }
+
       const metadata = await getInfoAsync(fileURI);
 
       if (!metadata.exists && isMounted()) {

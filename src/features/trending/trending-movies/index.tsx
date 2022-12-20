@@ -2,7 +2,7 @@ import React from "react";
 import { useTrendingMovies } from "./api/get-trending-movies";
 import { Box, FlatList, Flex, Heading, Pressable } from "native-base";
 import { getImageUrl } from "../../../utils/image";
-import { LoadingMovies } from "./components/loading-movies";
+import { LoadingHorizontalStack } from "../../../components/loading-horizontal-stack";
 import { CachedImage } from "../../../components/cached-image";
 import type { TrendingMovieData } from "./api/types";
 import { useHomeStackNavigator } from "../../../hooks/use-home-stack-navigator";
@@ -23,7 +23,7 @@ const TrendingMovies = () => {
       </Heading>
 
       {isLoading && !trendingMovies ? (
-        <LoadingMovies />
+        <LoadingHorizontalStack />
       ) : (
         <FlatList
           data={trendingMovies}

@@ -17,9 +17,11 @@ import { Box, NativeBaseProvider } from "native-base";
 import { RootNavigator } from "./src/config/navigator";
 import { SwrProvider } from "./src/config/swr";
 import { initImageCacheDirectory } from "./src/utils/image";
+import dayjs from  'dayjs';
 
 // API DOCS: https://movie-sign.onrender.com/docs
 
+dayjs.locale('pt-br')
 initImageCacheDirectory();
 
 SplashScreen.preventAutoHideAsync();

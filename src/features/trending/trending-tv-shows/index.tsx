@@ -1,16 +1,10 @@
 import React from "react";
 
-import {
-  Box,
-  FlatList,
-  Flex,
-  Heading,
-  HStack,
-  Skeleton,
-} from "native-base";
+import { Box, FlatList, Flex, Heading } from "native-base";
 import { getImageUrl } from "../../../utils/image";
 import { useTrendingTvShows } from "./api/get-trending-tv-shows";
 import { CachedImage } from "../../../components/cached-image";
+import { LoadingHorizontalStack } from "../../../components/loading-horizontal-stack";
 
 const TrendingTvShows = () => {
   const { isLoading, trendingTvShows } = useTrendingTvShows();
@@ -22,32 +16,7 @@ const TrendingTvShows = () => {
       </Heading>
 
       {isLoading && !trendingTvShows ? (
-        <HStack space="6">
-          <Skeleton
-            width="84px"
-            height="128px"
-            startColor="background.100"
-            endColor="gray.100"
-          />
-          <Skeleton
-            width="84px"
-            height="128px"
-            startColor="background.100"
-            endColor="gray.100"
-          />
-          <Skeleton
-            width="84px"
-            height="128px"
-            startColor="background.100"
-            endColor="gray.100"
-          />
-          <Skeleton
-            width="84px"
-            height="128px"
-            startColor="background.100"
-            endColor="gray.100"
-          />
-        </HStack>
+        <LoadingHorizontalStack />
       ) : (
         <FlatList
           data={trendingTvShows}

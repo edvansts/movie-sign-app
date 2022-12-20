@@ -7,7 +7,7 @@ const SKELETON_DIMENSIONS = {
   height: 128
 }
 
-function LoadingMovies() {
+function LoadingHorizontalStack() {
   const { width } = useWindowDimensions();
 
   const skeletonQuantity = Math.floor(width / SKELETON_DIMENSIONS.width);
@@ -29,4 +29,4 @@ function LoadingMovies() {
   );
 }
 
-export { LoadingMovies };
+export { LoadingHorizontalStack };

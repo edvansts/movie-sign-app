@@ -10,9 +10,6 @@ export const theme = extendTheme({
     body: "Inter",
     mono: "Inter",
   },
-  fontSizes: {
-    'h2': '24px'
-  },
   components: {
     Text: {
       baseStyle: {

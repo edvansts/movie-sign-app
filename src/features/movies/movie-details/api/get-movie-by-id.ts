@@ -11,7 +11,7 @@ const useGetMovieById = (movieId?: string) => {
   );
 
   
-  const movie = data?.data;
+  const movie: MovieData | undefined = data?.data;
 
   return {
     getmovie: mutate,
