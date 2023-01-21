@@ -1,15 +1,15 @@
-import React from "react";
-import { z, TypeOf } from "zod";
-import { FontAwesome, AntDesign } from "@expo/vector-icons";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Controller, useForm } from "react-hook-form";
-import { requiredError } from "../../constants";
+import React from 'react';
+import { z, TypeOf } from 'zod';
+import { FontAwesome, AntDesign } from '@expo/vector-icons';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Controller, useForm } from 'react-hook-form';
+import { requiredError } from '../../constants';
 
 import {
   Keyboard,
   TouchableWithoutFeedback,
   ImageBackground,
-} from "react-native";
+} from 'react-native';
 import {
   Box,
   useTheme,
@@ -19,8 +19,8 @@ import {
   Input,
   Container,
   Link,
-} from "native-base";
-import { SafeAreaView } from "react-native-safe-area-context";
+} from 'native-base';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const REGISTER_SCHEMA = z.object({
   username: z.string().min(1, requiredError),
@@ -36,10 +36,10 @@ const Register = () => {
 
   const { control, handleSubmit } = useForm<IRegisterForm>({
     defaultValues: {
-      username: "",
-      password: "",
-      email: "",
-      name: "",
+      username: '',
+      password: '',
+      email: '',
+      name: '',
     },
     resolver: zodResolver(REGISTER_SCHEMA),
   });
@@ -60,7 +60,7 @@ const Register = () => {
             }}
           >
             <Image
-              source={require("../../../assets/images/cineme.png")}
+              source={require('../../../assets/images/cineme.png')}
               maxHeight="150px"
               maxWidth="500px"
               alt="logo"
@@ -142,7 +142,7 @@ const Register = () => {
             <Text marginLeft="1">Nome de usuário</Text>
             <Controller
               control={control}
-              name="email"
+              name="username"
               render={({
                 field: { onChange, ...field },
                 formState: { errors },
@@ -199,12 +199,12 @@ const Register = () => {
           </Box>
 
           <ImageBackground
-            source={require("../../../assets/images/stranger-things.png")}
+            source={require('../../../assets/images/stranger-things.png')}
             resizeMode="cover"
             style={{
-              height: "100%",
-              width: "100%",
-              position: "absolute",
+              height: '100%',
+              width: '100%',
+              position: 'absolute',
               bottom: 0,
               zIndex: -1,
             }}
