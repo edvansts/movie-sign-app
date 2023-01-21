@@ -5,6 +5,7 @@ import type { FeedTabsParamList } from "../feed/types";
 export type HomeStackParamList = {
   feed: NavigatorScreenParams<FeedTabsParamList>;
   "movie-details": { movieId: string };
+  "tv-show-details": {tvShowId: string};
 };
 
 export type HomeStackNavigationProps =

@@ -9,6 +9,8 @@ import { Text } from "native-base";
 import dayjs from "dayjs";
 import { Rating } from "./components/rating";
 import { MovieCast } from "./components/movie-cast";
+import { CachedImage } from "../../../components/cached-image";
+import { getImageUrl } from "../../../utils/image";
 
 function MovieDetails() {
   const { params } = useRoute<HomeRouteProps<"movie-details">>();
@@ -26,12 +28,28 @@ function MovieDetails() {
       ) : (
         <ScrollView
           backgroundColor="background.100"
-          style={{ flex: 1 }}
+          style={{ flex: 1, padding: 3 }}
           showsVerticalScrollIndicator={false}
         >
           <VStack marginX="4" space="2.5">
-            <Box>
+            <Box alignItems="center">
               <Heading fontSize={"md"}>{movie.title}</Heading>
+              <Box
+                key={movie._id}
+                width="164px"
+                height="256px"
+                backgroundColor="white"
+                mr="6"
+                margin="2"
+              >
+                <CachedImage
+                  src={getImageUrl(movie.posterImage)}
+                  alt={movie.title}
+                  cacheKey={movie._id}
+                  w="100%"
+                  height="100%"
+                />
+              </Box>
               <Text fontSize="sm">{releaseDate} (BR)</Text>
 
               <Text mt="2.5" fontSize="sm">
