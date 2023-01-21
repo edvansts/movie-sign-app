@@ -6,6 +6,7 @@ import { Box, ScrollView, VStack, Heading } from "native-base";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { CachedImage } from "../../../components/cached-image";
 import { getImageUrl } from "../../../utils/image";
+import { useGetTvShowSessions } from "./api/get-tv-show-seasons";
 
 function TvShowDetails() {
   const { params } = useRoute<HomeRouteProps<"tv-show-details">>();
@@ -13,6 +14,9 @@ function TvShowDetails() {
   const tvShowId = params.tvShowId;
 
   const { isLoading, tvShow } = useGetTvShowById(tvShowId);
+  const { isLoading: isLoadingSeasons, tvShowSeasons } =
+    useGetTvShowSessions(tvShowId);
+
 
   const releaseDate = dayjs(tvShow?.firstAirDate).format("DD/MM/YYYY");
 
