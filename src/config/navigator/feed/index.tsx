@@ -12,7 +12,7 @@ const TABS_PROPS: Record<
   { icon: keyof typeof FontAwesome.glyphMap }
 > = {
   home: { icon: "home" },
-  myList: { icon: "th-large" },
+  // myList: { icon: "th-large" },
   profile: { icon: "user" },
 };
 
@@ -42,7 +42,7 @@ const FeedTabsNavigator = () => {
         },
       })}
     >
-      <Tabs.Screen name="myList" component={Feed} />
+      {/* <Tabs.Screen name="myList" component={Feed} /> */}
       <Tabs.Screen name="home" component={Feed} />
       <Tabs.Screen name="profile" component={Feed} />
     </Tabs.Navigator>
