@@ -1,5 +1,5 @@
 export const removeFileExtension = (text: string) => {
-  const dotIndex = text.lastIndexOf(".");
+  const dotIndex = text.lastIndexOf('.');
 
   if (dotIndex === -1) {
     return text;
@@ -10,14 +10,18 @@ export const removeFileExtension = (text: string) => {
   return textWithoutExtension;
 };
 
+function replaceAll(str: string, from: string, to: string) {
+  return str.replace(new RegExp(from, 'g'), to);
+}
+
 export const removeHttpPrefixFromUri = (text: string) => {
-  const barsIndex = text.lastIndexOf("://");
+  const barsIndex = text.lastIndexOf('://');
 
   if (barsIndex === -1) {
     return text;
   }
 
-  const textWithoutBars = text.substring(barsIndex + 3).replaceAll('/', '.');
+  const textWithoutBars = replaceAll(text.substring(barsIndex + 3), '/', '.');
 
   return textWithoutBars;
 };
