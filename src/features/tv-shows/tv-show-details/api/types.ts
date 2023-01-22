@@ -11,7 +11,7 @@ export interface TvShowsData {
   backdropImage: string;
   adult: boolean;
   createdBy: string[];
-  genres: string[];
+  genres: GenresTypes[];
   homepage: string;
   lastEpisodeToAir: any;
   nextEpisodeToAir: any;
@@ -20,4 +20,9 @@ export interface TvShowsData {
   tagline: string;
   productionCompanies: string[];
   status: string;
+}
+
+interface GenresTypes {
+  id: string;
+  name: string;
 }

@@ -11,7 +11,7 @@ const useGetTvShowById = (tvShowId?: string) => {
   );
 
   const tvShow: TvShowsData | undefined = data?.data;
-  
+
   return {
     getTvShow: mutate,
     isLoading: isValidating,

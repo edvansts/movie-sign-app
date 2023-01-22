@@ -19,7 +19,7 @@ function MovieDetails() {
 
   const { isLoading, movie } = useGetMovieById(movieId);
 
-  const releaseDate = dayjs(movie?.releaseDate).format("DD/MM/YYYY");
+  const releaseDate = dayjs(movie?.releaseDate).format("YYYY");
 
   return (
     <SafeAreaView style={{ flex: 1 }}>

@@ -2,7 +2,7 @@ import { useRoute } from "@react-navigation/native";
 import { HomeRouteProps } from "../../../config/navigator/home/types";
 import { useGetTvShowById } from "./api/get-tv-show-by-id";
 import dayjs from "dayjs";
-import { Box, ScrollView, VStack, Heading } from "native-base";
+import { Box, ScrollView, VStack, Heading, Text } from "native-base";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { CachedImage } from "../../../components/cached-image";
 import { getImageUrl } from "../../../utils/image";
@@ -18,8 +18,8 @@ function TvShowDetails() {
     useGetTvShowSessions(tvShowId);
 
 
-  const releaseDate = dayjs(tvShow?.firstAirDate).format("DD/MM/YYYY");
-
+  const releaseDate = dayjs(tvShow?.firstAirDate).format("YYYY");
+  const genresMap = tvShow?.genres.map(gen => gen.name)
   return (
     <SafeAreaView style={{ flex: 1 }}>
       {isLoading && !tvShow ? (
@@ -49,6 +49,12 @@ function TvShowDetails() {
                   height="100%"
                 />
               </Box>
+              <Text fontSize="sm">{releaseDate} (BR)</Text>
+              <Text fontSize="sm">{genresMap.join(', ')}</Text>
+
+              <Text mt="2.5" fontSize="sm">
+                {tvShow.overview}
+              </Text>
             </Box>
           </VStack>
         </ScrollView>
