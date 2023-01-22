@@ -1,8 +1,8 @@
-import useSWR from "swr";
-import { CLIENT_API } from "../../../../config/axios/api-client";
+import useSWR from 'swr';
+import { CLIENT_API } from '../../../../config/axios/api-client';
 
-const useGetTvShowSessions = (tvShowId?: string) => {
-  const url = `/tv-shows/${tvShowId || ""}/seasons`;
+const useGetTvShowSeasons = (tvShowId?: string) => {
+  const url = `/tv-shows/${tvShowId || ''}/seasons`;
 
   const { mutate, isValidating, data, error } = useSWR(
     tvShowId ? url : null,
@@ -19,4 +19,4 @@ const useGetTvShowSessions = (tvShowId?: string) => {
   };
 };
 
-export { useGetTvShowSessions };
+export { useGetTvShowSeasons };
