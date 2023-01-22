@@ -1,5 +1,5 @@
 import create from "zustand";
-import { devtools, persist } from "zustand/middleware";
+import { persist } from "zustand/middleware";
 import { deleteItem, readItem, saveItem } from "../../config/secure-store";
 
 const TOKEN_STORE_KEY = `token-store`;
@@ -10,21 +10,18 @@ interface TokenState {
 }
 
 export const useTokenStore = create<TokenState>()(
-  devtools(
-    persist(
-      (set) => ({
-        token: undefined,
-        setToken: (token) => set({ token }),
+  persist(
+    (set) => ({
+      token: undefined,
+      setToken: (token) => set({ token }),
+    }),
+    {
+      name: TOKEN_STORE_KEY,
+      getStorage: () => ({
+        setItem: saveItem,
+        getItem: readItem,
+        removeItem: deleteItem,
       }),
-      {
-        name: TOKEN_STORE_KEY,
-        getStorage: () => ({
-          setItem: saveItem,
-          getItem: readItem,
-          removeItem: deleteItem,
-        }),
-        // onRehydrateStorage: (state) =>  {console.log(state)}
-      }
-    )
+    }
   )
 );

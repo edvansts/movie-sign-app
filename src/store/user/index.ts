@@ -1,6 +1,9 @@
 import create from "zustand";
-import { devtools, persist } from "zustand/middleware";
+import { persist } from "zustand/middleware";
+import { deleteItem, readItem, saveItem } from "../../config/secure-store";
 import type { User } from "../../types";
+
+const USER_STORE_KEY = `token-store`;
 
 interface UserState {
   user?: User;
@@ -8,8 +11,18 @@ interface UserState {
 }
 
 export const useUserStore = create<UserState>()(
-  devtools((set) => ({
-    user: undefined,
-    setUser: (user) => set({ user }),
-  }))
+  persist(
+    (set) => ({
+      user: undefined,
+      setUser: (user) => set({ user }),
+    }),
+    {
+      name: USER_STORE_KEY,
+      getStorage: () => ({
+        setItem: saveItem,
+        getItem: readItem,
+        removeItem: deleteItem,
+      }),
+    }
+  )
 );

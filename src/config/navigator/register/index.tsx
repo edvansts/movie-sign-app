@@ -2,9 +2,9 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { SignIn } from "../../../screens/sign-in";
 import { Register } from "../../../screens/register";
-import type { RootStackParamList } from "./types";
+import type { RegisterStackParamList } from "./types";
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const Stack = createNativeStackNavigator<RegisterStackParamList>();
 
 const RegisterStackNavigator = () => {
   return (
