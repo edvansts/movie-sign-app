@@ -10,6 +10,7 @@ import { useGetTvShowSeasons } from "./api/get-tv-show-seasons";
 import React, { useState } from "react";
 import { SelectList } from "react-native-dropdown-select-list";
 import { FontAwesome } from "@expo/vector-icons";
+import { LoadingTvShow } from "./components/loading-tv-show";
 
 interface KeyValueObject {
   key: string;
@@ -33,7 +34,7 @@ function TvShowDetails() {
   const seasons = tvShowSeasons?.map<KeyValueObject>((season) => ({
     key: season._id,
     value: season.name,
-  }));
+  })) || [];
 
   const releaseDate = dayjs(tvShow?.firstAirDate).format("YYYY");
   const genresMap = tvShow?.genres.map((gen) => gen.name);
@@ -41,7 +42,7 @@ function TvShowDetails() {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       {isLoading && !tvShow ? (
-        <Box></Box>
+        <LoadingTvShow />
       ) : (
         <ScrollView
           backgroundColor="background.100"

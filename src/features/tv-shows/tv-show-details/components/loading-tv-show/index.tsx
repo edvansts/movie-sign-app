@@ -1,7 +1,7 @@
 import { Box, Skeleton, VStack } from "native-base";
 import React from "react";
 
-function LoadingMovie() {
+function LoadingTvShow() {
   return (
     <VStack
       backgroundColor="background.100"
@@ -51,4 +51,4 @@ function LoadingMovie() {
   );
 }
 
-export { LoadingMovie };
+export { LoadingTvShow };
