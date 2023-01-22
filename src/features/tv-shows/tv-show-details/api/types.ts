@@ -26,3 +26,27 @@ interface GenresTypes {
   id: string;
   name: string;
 }
+
+export interface Episode {
+  episodeNumber: number;
+  name: string;
+  tmdbId: number;
+  airDate: Date;
+  overview?: string;
+  lastRating: number;
+  posterImage?: string;
+}
+
+export interface Season {
+  _id: string;
+  name: string;
+  tmdbId: number;
+  airDate: Date;
+  overview?: string;
+  posterImage?: string;
+  seasonNumber: number;
+  episodes: Episode[];
+  tvShowId: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
