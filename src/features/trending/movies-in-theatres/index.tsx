@@ -5,10 +5,10 @@ import { LoadingHorizontalStack } from "../../../components/loading-horizontal-s
 import { getImageUrl } from "../../../utils/image";
 import { CachedImage } from "../../../components/cached-image";
 import { useHomeStackNavigator } from "../../../hooks/use-home-stack-navigator";
-import { useTrendingMoviesInTheatres } from "./api/get-trending-movies-in-theatres";
+import { useGetMoviesInTheatres } from "./api/get-movies-in-theatres";
 
-const TrendingMoviesInTheatres = () => {
-  const { isLoading, trendingMoviesInTheatres } = useTrendingMoviesInTheatres();
+const MoviesInTheatres = () => {
+  const { isLoading, moviesInTheatres } = useGetMoviesInTheatres();
   const { navigate } = useHomeStackNavigator();
 
   const navigateToMovie = (movie: TrendingMovieData) => {
@@ -21,11 +21,11 @@ const TrendingMoviesInTheatres = () => {
         Filmes em cartaz
       </Heading>
 
-      {isLoading && !trendingMoviesInTheatres ? (
+      {isLoading && !moviesInTheatres ? (
         <LoadingHorizontalStack />
       ) : (
         <FlatList
-          data={trendingMoviesInTheatres}
+          data={moviesInTheatres}
           horizontal
           height="128px"
           width="100%"
@@ -54,4 +54,4 @@ const TrendingMoviesInTheatres = () => {
   );
 };
 
-export {TrendingMoviesInTheatres}
+export {MoviesInTheatres}

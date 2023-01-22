@@ -1,22 +1,22 @@
 import useSWR from "swr";
 import { CLIENT_API } from "../../../../config/axios/api-client";
-import { GetTrendingMoviesInTheatres } from "./types";
+import { GetMoviesInTheatres } from "./types";
 
 const url = "/movies/in-theatres";
 
-const useTrendingMoviesInTheatres = () => {
+const useGetMoviesInTheatres = () => {
   const { mutate, isValidating, data, error } = useSWR(url, (url) =>
-    CLIENT_API.get<GetTrendingMoviesInTheatres>(url)
+    CLIENT_API.get<GetMoviesInTheatres>(url)
   );
 
-  const trendingMoviesInTheatres = data?.data;
+  const moviesInTheatres = data?.data;
 
   return {
     getTrengingMoviesInTheatres: mutate,
     isLoading: isValidating,
-    trendingMoviesInTheatres,
+    moviesInTheatres,
     error,
   };
 };
 
-export { useTrendingMoviesInTheatres };
+export { useGetMoviesInTheatres };

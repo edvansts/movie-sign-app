@@ -1,32 +1,32 @@
 import React from "react";
-import { useTrendingMoviesTopRated } from "./api/get-trending-movies-top-rated";
+import { useGetTopRatedMovies } from "./api/get-trending-movies-top-rated";
 import { Box, FlatList, Flex, Heading, Pressable } from "native-base";
 import { getImageUrl } from "../../../utils/image";
 import { LoadingHorizontalStack } from "../../../components/loading-horizontal-stack";
 import { CachedImage } from "../../../components/cached-image";
-import type { TrendingMovieTopRatedData } from "./api/types";
+import type { TopRatedMoviesData } from "./api/types";
 import { useHomeStackNavigator } from "../../../hooks/use-home-stack-navigator";
 
-const TrendingMoviesTopRated = () => {
-  const { isLoading, trendingMoviesTopRated } = useTrendingMoviesTopRated();
+const TopRatedMovies = () => {
+  const { isLoading, topRatedMovies } = useGetTopRatedMovies();
 
   const { navigate } = useHomeStackNavigator();
 
-  const navigateToMovie = (movie: TrendingMovieTopRatedData) => {
+  const navigateToMovie = (movie: TopRatedMoviesData) => {
     navigate('movie-details', { movieId: movie._id })
   }
 
   return (
     <Flex>
       <Heading fontSize="lg" color="white" mb="3.5">
-        Filmes com melhor avaliação
+        Top Filmes
       </Heading>
 
-      {isLoading && !trendingMoviesTopRated ? (
+      {isLoading && !topRatedMovies ? (
         <LoadingHorizontalStack />
       ) : (
         <FlatList
-          data={trendingMoviesTopRated}
+          data={topRatedMovies}
           horizontal
           height="128px"
           width="100%"
@@ -55,4 +55,4 @@ const TrendingMoviesTopRated = () => {
   );
 };
 
-export { TrendingMoviesTopRated };
+export { TopRatedMovies };

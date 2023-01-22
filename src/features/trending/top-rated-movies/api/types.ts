@@ -1,6 +1,6 @@
-export type GetTrendingMoviesInTheatres = TrendingMovieInTheatresData[];
+export type GetTopRatedMovies = TopRatedMoviesData[];
 
-export type TrendingMovieInTheatresData = {
+export type TopRatedMoviesData = {
     _id: string;
     title: string;
     originalTitle: string;
