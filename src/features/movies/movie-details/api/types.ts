@@ -35,9 +35,6 @@ export interface FavoritePerformance {
   personName: string;
 }
 
-
-
-
 export type MovieCastData = {
   _id: string;
   character: string;
