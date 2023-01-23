@@ -42,8 +42,7 @@ function LoadingTvShow() {
       <Skeleton
         startColor="background.100"
         endColor="gray.100"
-        textAlign="left"
-        alignSelf="left"
+        mr='auto'
         width="50%"
         height="24px"
       />
