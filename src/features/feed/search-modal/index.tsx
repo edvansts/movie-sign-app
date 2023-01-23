@@ -16,6 +16,7 @@ import { ResultCard } from "./components/result-card";
 import { getMovieByTmdbId } from "./api/get-movie-by-tmdb-id";
 import { Result } from "./api/types";
 import { useHomeStackNavigator } from "../../../hooks/use-home-stack-navigator";
+import { getTvShowByTmdbId } from "./api/get-tv-show-by-tmdb-id";
 
 interface SearchModalProps {
   isOpen: boolean;
@@ -45,7 +46,7 @@ const SearchModal = ({ isOpen, onClose }: SearchModalProps) => {
 
         navigate("movie-details", { movieId: movie._id });
       } else if (mediaType === "tv") {
-        const tvShow = await getMovieByTmdbId(id);
+        const tvShow = await getTvShowByTmdbId(id);
 
         navigate("tv-show-details", { tvShowId: tvShow._id });
       }

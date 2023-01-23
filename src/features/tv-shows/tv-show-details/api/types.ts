@@ -20,6 +20,7 @@ export interface TvShowsData {
   tagline: string;
   productionCompanies: string[];
   status: string;
+  _id: string;
 }
 
 interface GenresTypes {

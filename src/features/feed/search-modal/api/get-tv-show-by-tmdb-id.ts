@@ -3,7 +3,7 @@ import { CLIENT_API } from "../../../../config/axios/api-client";
 import { TvShowsData } from "../../../tv-shows/tv-show-details/api/types";
 
 const getTvShowByTmdbId = async (tmdbId: number) => {
-  return CLIENT_API.get<TvShowsData>(`tv-show/tmdb/${tmdbId}`).then(
+  return CLIENT_API.get<TvShowsData>(`tv-shows/tmdb/${tmdbId}`).then(
     (response) => {
       mutate(`tv-shows/tmdb/${tmdbId}`, response.data);
 
