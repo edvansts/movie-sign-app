@@ -13,6 +13,9 @@ import { FontAwesome } from "@expo/vector-icons";
 import { useGetSearchAll } from "./api/get-search-all";
 import { useDebounce } from "usehooks-ts";
 import { ResultCard } from "./components/result-card";
+import { getMovieByTmdbId } from "./api/get-movie-by-tmdb-id";
+import { Result } from "./api/types";
+import { useHomeStackNavigator } from "../../../hooks/use-home-stack-navigator";
 
 interface SearchModalProps {
   isOpen: boolean;
@@ -32,6 +35,24 @@ const SearchModal = ({ isOpen, onClose }: SearchModalProps) => {
   const results = searchData?.results.filter((result) =>
     ["tv", "movie"].includes(result.mediaType)
   );
+
+  const { navigate } = useHomeStackNavigator();
+
+  const onCardPress = async ({ mediaType, id }: Result) => {
+    try {
+      if (mediaType === "movie") {
+        const movie = await getMovieByTmdbId(id);
+
+        navigate("movie-details", { movieId: movie._id });
+      } else if (mediaType === "tv") {
+        const tvShow = await getMovieByTmdbId(id);
+
+        navigate("tv-show-details", { tvShowId: tvShow._id });
+      }
+
+      onClose();
+    } catch (err) {}
+  };
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} flex={1}>
@@ -68,7 +89,9 @@ const SearchModal = ({ isOpen, onClose }: SearchModalProps) => {
               <FlatList
                 data={results}
                 renderItem={({ item: result }) => (
-                  <ResultCard result={result} />
+                  <Pressable onPress={() => onCardPress(result)}>
+                    <ResultCard result={result} />
+                  </Pressable>
                 )}
               />
             )

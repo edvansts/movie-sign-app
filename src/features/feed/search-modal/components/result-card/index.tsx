@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import { Box, Heading, HStack, ScrollView, Text } from "native-base";
+import { Box, Heading, HStack, Pressable, ScrollView, Text } from "native-base";
 import React from "react";
 import ReadMore from "react-native-read-more-text";
 import { CachedImage } from "../../../../../components/cached-image";
