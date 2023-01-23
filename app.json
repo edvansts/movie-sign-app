@@ -20,11 +20,18 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.matosed.cineme"
     },
     "android": {
       "adaptiveIcon": {
         "backgroundColor": "#FFFFFF"
+      },
+      "package": "com.matosed.cineme"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "a3e4d28d-93b6-4414-9f68-c99ff78b02ca"
       }
     }
   }
