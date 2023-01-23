@@ -4,6 +4,7 @@ import { Feed } from "../../../screens/feed";
 import type { FeedTabsParamList } from "./types";
 import { FontAwesome } from "@expo/vector-icons";
 import { useTheme } from "native-base";
+import { UserDetails } from "../../../screens/user-details";
 
 const Tabs = createBottomTabNavigator<FeedTabsParamList>();
 
@@ -44,7 +45,7 @@ const FeedTabsNavigator = () => {
     >
       {/* <Tabs.Screen name="myList" component={Feed} /> */}
       <Tabs.Screen name="home" component={Feed} />
-      <Tabs.Screen name="profile" component={Feed} />
+      <Tabs.Screen name="profile" component={UserDetails} />
     </Tabs.Navigator>
   );
 };
